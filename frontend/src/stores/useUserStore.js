@@ -49,13 +49,10 @@ export const useUserStore = create((set, get) => ({
 	checkAuth: async () => {
 		set({ checkingAuth: true });
 		try {
-            console.log("Checking auth");
             
 			const response = await axios.get("/auth/profile");
 			set({ user: response.data, checkingAuth: false });
 		} catch (error) {
-            console.log("Error checking auth");
-            
 			console.log(error.message);
 			set({ checkingAuth: false, user: null });
 		}
@@ -80,7 +77,7 @@ export const useUserStore = create((set, get) => ({
 // TODO: Implement the axios interceptors for refreshing access token
 
 // Axios interceptor for token refresh
-/* let refreshPromise = null;
+let refreshPromise = null;
 
 axios.interceptors.response.use(
 	(response) => response,
@@ -110,4 +107,4 @@ axios.interceptors.response.use(
 		}
 		return Promise.reject(error);
 	}
-); */
+);
