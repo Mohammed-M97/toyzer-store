@@ -51,7 +51,7 @@ const GiftCouponCard = () => {
 
 				<motion.button
 					type='button'
-					className='flex w-full items-center justify-center rounded-lg bg-emerald-600 px-5 py-2.5 text-sm font-medium text-white hover:bg-emerald-700 focus:outline-none focus:ring-4 focus:ring-emerald-300'
+					className='flex w-full items-center justify-center rounded-lg bg-lavender-700 px-5 py-2.5 text-sm font-medium text-white hover:bg-lavender-600 hover:text-gray-700  focus:outline-none focus:ring-4 focus:ring-lavender-500'
 					whileHover={{ scale: 1.05 }}
 					whileTap={{ scale: 0.95 }}
 					onClick={handleApplyCoupon}
