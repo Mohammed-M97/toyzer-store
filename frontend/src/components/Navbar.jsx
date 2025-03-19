@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { ShoppingCart, UserPlus, LogIn, LogOut, Lock } from "lucide-react";
 import { Link } from "react-router-dom";
 import { useUserStore } from '../stores/useUserStore';
@@ -11,9 +11,12 @@ const Navbar = () => {
     const { user, logout } = useUserStore();
     const { cart } = useCartStore();
     const isAdmin = user?.role === 'admin';
+    const [currentLanguage, setCurrentLanguage] = useState('en');
 
     const changeLanguage = (lng) => {
         i18n.changeLanguage(lng);
+        document.documentElement.dir = lng === 'ar' ? 'rtl' : 'ltr';
+        setCurrentLanguage(lng);
     };
 
     return (
@@ -28,7 +31,7 @@ const Navbar = () => {
                         <Link to={"/"} className='text-gray-700 hover:text-gray-900 transition duration-300 ease-in-out'>{t("Home")}</Link>
                         {user && (
                             <Link to={'/cart'} className='relative group text-gray-700 hover:text-gray-900 transition duration-300 ease-in-out'>
-                                <ShoppingCart className='inline-block mr-1 group-hover:text-gray-900' size={20} />
+                                <ShoppingCart className='inline-block mr-1 ml-2 group-hover:text-gray-900' size={20} />
                                 <span className='hidden sm:inline'>{t("Cart")}</span>
                                 {cart.length > 0 && (
                                     <span className='absolute -top-2 -left-2 bg-lavender-700 hover:bg-lavender-600 text-white rounded-full px-2 py-0.5 text-xs group-hover:bg-gray-700 transition duration-300 ease-in-out'>
@@ -54,7 +57,7 @@ const Navbar = () => {
                                 onClick={logout}
                             >
                                 <LogOut size={18} />
-                                <span className='hidden sm:inline ml-2'>{t("Logout")}</span>
+                                <span className='hidden sm:inline ml-2 mr-2'>{t("Logout")}</span>
                             </button>
                         ) : (
                             <>
@@ -62,20 +65,23 @@ const Navbar = () => {
                                     to={"/signup"}
                                     className='bg-lavender-700 hover:bg-lavender-600 text-white hover:text-gray-700 py-2 px-4 rounded-md flex items-center transition duration-300 ease-in-out'
                                 >
-                                    <UserPlus className='mr-2' size={18} />
+                                    <UserPlus className='mr-2 ml-2' size={18} />
                                     {t("Sign Up")}
                                 </Link>
                                 <Link
                                     to={"/login"}
                                     className='bg-lavender-700 hover:bg-lavender-600 text-white hover:text-gray-700 py-2 px-4 rounded-md flex items-center transition duration-300 ease-in-out'
                                 >
-                                    <LogIn className='mr-2' size={18} />
+                                    <LogIn className='mr-2 ml-2' size={18} />
                                     {t("Login")}
                                 </Link>
                             </>
                         )}
-                        <button onClick={() => changeLanguage('en')}>EN</button>
-                        <button onClick={() => changeLanguage('ar')}>AR</button>
+                        {currentLanguage === 'en' ? (
+                            <button onClick={() => changeLanguage('ar')}>AR</button>
+                        ) : (
+                            <button onClick={() => changeLanguage('en')}>EN</button>
+                        )}
                     </nav>
                 </div>
             </div>

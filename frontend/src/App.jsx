@@ -28,7 +28,7 @@ function App() {
   if (checkingAuth) return <LoadingSpinner />;
 
   return (
-    <div className='min-h-screen bg-gray-100 text-gray-900 relative overflow-hidden'>
+    <div className='min-h-screen bg-gray-100 text-gray-900 flex flex-col'>
       {/* Background gradient */}
       <div className='absolute inset-0 overflow-hidden'>
         <div className='absolute inset-0'>
@@ -36,7 +36,7 @@ function App() {
         </div>
       </div>
 
-      <div className="relative z-50 pt-20">
+      <div className="relative z-50 flex-grow pt-20">
         <Navbar />
         <Routes>
           <Route path='/' element={<HomePage />} />
@@ -55,8 +55,8 @@ function App() {
             element={user ? <CartPage /> : <Navigate to='/login' />}
           />
         </Routes>
-      <Footer />
       </div>
+      <Footer />
       <Toaster />
     </div>
   );

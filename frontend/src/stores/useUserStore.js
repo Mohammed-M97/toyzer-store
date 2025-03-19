@@ -1,6 +1,6 @@
-import { create } from "zustand";  // Import the create function from zustand to create a store instance for user data management in the frontend application 
-import axios from "../lib/axios";  // Import the axios instance from the lib folder to make HTTP requests to the backend API
-import { toast } from "react-hot-toast";  // Import the toast function from react-hot-toast to display toast notifications in the frontend application
+import { create } from "zustand";
+import axios from "../lib/axios";
+import { toast } from "react-hot-toast";
 
 export const useUserStore = create((set, get) => ({
 	user: null,
@@ -23,15 +23,18 @@ export const useUserStore = create((set, get) => ({
 			toast.error(error.response.data.message || "An error occurred");
 		}
 	},
-
 	login: async (email, password) => {
 		set({ loading: true });
 
 		try {
 			const res = await axios.post("/auth/login", { email, password });
+			console.log(res.data);
+			
 
 			set({ user: res.data, loading: false });
 		} catch (error) {
+			console.log(error.message);
+			
 			set({ loading: false });
 			toast.error(error.response.data.message || "An error occurred");
 		}
@@ -49,7 +52,6 @@ export const useUserStore = create((set, get) => ({
 	checkAuth: async () => {
 		set({ checkingAuth: true });
 		try {
-            
 			const response = await axios.get("/auth/profile");
 			set({ user: response.data, checkingAuth: false });
 		} catch (error) {

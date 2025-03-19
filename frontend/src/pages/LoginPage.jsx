@@ -4,8 +4,10 @@ import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 import { LogIn, Mail, Lock, ArrowRight, Loader } from "lucide-react";
 import { useUserStore } from '../stores/useUserStore';
+import { useTranslation } from "react-i18next";
 
 const Login = () => {
+  const { t } = useTranslation();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
@@ -13,7 +15,6 @@ const Login = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(email, password);
     login(email, password);
   };
   return (
@@ -24,7 +25,9 @@ const Login = () => {
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8 }}
       >
-        <h2 className='mt-6 text-center text-3xl font-extrabold text-lavender-700'>Create your account</h2>
+        <h2 className='mt-6 text-center text-3xl font-extrabold text-lavender-700'>
+          {t("Sign in to your account")}
+        </h2>
       </motion.div>
 
       <motion.div className='mt-8 sm:mx-auto sm:w-full sm:max-w-md'
@@ -36,7 +39,7 @@ const Login = () => {
 
             <div>
               <label htmlFor='email' className='block text-sm font-medium text-gray-300'>
-                Email address
+                {t("Email address")}
               </label>
               <div className='mt-1 relative rounded-md shadow-sm'>
                 <div className='absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none'>
@@ -58,7 +61,7 @@ const Login = () => {
 
             <div>
               <label htmlFor='password' className='block text-sm font-medium text-gray-300'>
-                Password
+                {t("Password")}
               </label>
               <div className='mt-1 relative rounded-md shadow-sm'>
                 <div className='absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none'>
@@ -94,16 +97,16 @@ const Login = () => {
               ) : (
                 <>
                   <LogIn className='mr-2 h-5 w-5' aria-hidden='true' />
-                  Login
+                  {t("Login")}
                 </>
               )}
             </button>
           </form>
 
           <p className='mt-8 text-center text-sm text-gray-400'>
-            Not a member?{" "}
+            {t("Not a member?")}{" "}
             <Link to='/signup' className='font-medium text-gray-300 hover:text-gray-200'>
-              Sign up now <ArrowRight className='inline h-4 w-4' />
+              {t("Sign up now")} <ArrowRight className='inline h-4 w-4' />
             </Link>
           </p>
         </div>

@@ -1,8 +1,10 @@
 import { useEffect, useState } from "react";
 import { ShoppingCart, ChevronLeft, ChevronRight } from "lucide-react";
 import { useCartStore } from "../stores/useCartStore";
+import { useTranslation } from "react-i18next";
 
 const FeaturedProducts = ({ featuredProducts }) => {
+    const { t } = useTranslation();
     const [currentIndex, setCurrentIndex] = useState(0);
     const [itemsPerPage, setItemsPerPage] = useState(4);
 
@@ -35,7 +37,9 @@ const FeaturedProducts = ({ featuredProducts }) => {
     return (
         <div className='py-12'>
             <div className='container mx-auto px-4'>
-                <h2 className='text-center text-5xl sm:text-6xl font-bold text-lavender-700 mb-4'>Featured</h2>
+                <h2 className='text-center text-5xl sm:text-6xl font-bold text-lavender-700 mb-4'>
+                    {t("New Arrivals")}
+                </h2>
                 <div className='relative'>
                     <div className='overflow-hidden'>
                         <div
@@ -63,7 +67,7 @@ const FeaturedProducts = ({ featuredProducts }) => {
                                                 flex items-center justify-center'
                                             >
                                                 <ShoppingCart className='w-5 h-5 mr-2' />
-                                                Add to Cart
+                                                {t("Add to Cart")}
                                             </button>
                                         </div>
                                     </div>
@@ -74,9 +78,8 @@ const FeaturedProducts = ({ featuredProducts }) => {
                     <button
                         onClick={prevSlide}
                         disabled={isStartDisabled}
-                        className={`absolute top-1/2 -left-4 transform -translate-y-1/2 p-2 rounded-full transition-colors duration-300 ${
-                            isStartDisabled ? "bg-gray-400 cursor-not-allowed" : "bg-gray-700 hover:bg-gray-600"
-                        }`}
+                        className={`absolute top-1/2 -left-4 transform -translate-y-1/2 p-2 rounded-full transition-colors duration-300 ${isStartDisabled ? "bg-gray-400 cursor-not-allowed" : "bg-gray-700 hover:bg-gray-600"
+                            }`}
                     >
                         <ChevronLeft className='w-6 h-6 text-white' />
                     </button>
@@ -84,9 +87,8 @@ const FeaturedProducts = ({ featuredProducts }) => {
                     <button
                         onClick={nextSlide}
                         disabled={isEndDisabled}
-                        className={`absolute top-1/2 -right-4 transform -translate-y-1/2 p-2 rounded-full transition-colors duration-300 ${
-                            isEndDisabled ? "bg-gray-400 cursor-not-allowed" : "bg-gray-700 hover:bg-gray-600"
-                        }`}
+                        className={`absolute top-1/2 -right-4 transform -translate-y-1/2 p-2 rounded-full transition-colors duration-300 ${isEndDisabled ? "bg-gray-400 cursor-not-allowed" : "bg-gray-700 hover:bg-gray-600"
+                            }`}
                     >
                         <ChevronRight className='w-6 h-6 text-white' />
                     </button>

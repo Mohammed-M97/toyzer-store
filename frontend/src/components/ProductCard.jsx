@@ -2,8 +2,10 @@ import toast from "react-hot-toast";
 import { ShoppingCart } from "lucide-react";
 import { useUserStore } from "../stores/useUserStore";
 import { useCartStore } from "../stores/useCartStore";
+import { useTranslation } from "react-i18next";
 
 const ProductCard = ({ product }) => {
+    const { t } = useTranslation();
     const { user } = useUserStore();
     const { addToCart } = useCartStore();
     const handleAddToCart = () => {
@@ -34,8 +36,8 @@ const ProductCard = ({ product }) => {
                     className='flex w-full items-center justify-center rounded-lg bg-lavender-700 px-5 py-2.5 text-sm font-medium text-white hover:bg-lavender-600 hover:text-gray-700  focus:outline-none focus:ring-4 focus:ring-lavender-500'
                     onClick={handleAddToCart}
                 >
-                    <ShoppingCart size={22} className='mr-2' />
-                    Add to cart
+                    <ShoppingCart size={22} className='mr-2 ml-2' />
+                    {t("Add to Cart")}
                 </button>
             </div>
         </div>
