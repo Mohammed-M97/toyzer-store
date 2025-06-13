@@ -3,8 +3,10 @@ import ProductCard from "./ProductCard";
 import axios from "../lib/axios";
 import toast from "react-hot-toast";
 import LoadingSpinner from "./LoadingSpinner";
+import { useTranslation } from "react-i18next";
 
 const PeopleAlsoBought = () => {
+    const { t } = useTranslation();
     const [recommendations, setRecommendations] = useState([]);
     const [isLoading, setIsLoading] = useState(true);
 

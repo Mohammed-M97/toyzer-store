@@ -8,7 +8,12 @@ import "slick-carousel/slick/slick-theme.css";
 import { useTranslation } from "react-i18next";
 
 const categories = [
-    { href: "/jeans", name: "Jeans", imageUrl: "/jeans.jpg" },
+    { href: "/twoYesrs", name: "Newborn to 2 years old", imageUrl: "/twoYears.jpg" },
+    { href: "/animeFigure", name: "Anime Figure", imageUrl: "/animeFigure.jpg" },
+    { href: "/boysWorld", name: "Boys world", imageUrl: "/boysWorld.jpg" },
+    { href: "/girlsWorld", name: "Girls world", imageUrl: "/girlsWorld.jpg" },
+    { href: "/educationalGames", name: "Educational games", imageUrl: "/educationalGames.jpg" },
+    { href: "/scooter", name: "Scooter", imageUrl: "/scooter.png" },
     { href: "/t-shirts", name: "T-shirts", imageUrl: "/tshirts.jpg" },
     { href: "/shoes", name: "Shoes", imageUrl: "/shoes.jpg" },
     { href: "/glasses", name: "Glasses", imageUrl: "/glasses.png" },
@@ -59,7 +64,13 @@ const HomePage = () => {
 
                 <div className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4'>
                     {categories.map((category) => (
-                        <CategoryItem category={category} key={category.name} />
+                        <CategoryItem
+                        category={{
+                            ...category,
+                            name: t(category.name), // Translate category name
+                        }}
+                        key={category.name}
+                    />
                     ))}
                 </div>
 
