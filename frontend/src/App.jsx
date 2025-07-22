@@ -13,6 +13,7 @@ import { useEffect } from 'react';
 import LoadingSpinner from './components/LoadingSpinner';
 import { useCartStore } from './stores/useCartStore';
 
+
 function App() {
   const { user, checkAuth, checkingAuth } = useUserStore();
   const { getCartItems } = useCartStore();

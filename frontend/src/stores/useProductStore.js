@@ -20,11 +20,13 @@ export const useProductStore = create((set) => ({
 			toast.error(error.response.data.error);
 			set({ loading: false });
 		}
-	},	
+	},
 
 	fetchAllProducts: async () => {
 		set({ loading: true });
 		try {
+			console.log("Fetching all products");
+
 			const response = await axios.get("/products");
 			set({ products: response.data.products, loading: false });
 		} catch (error) {
@@ -34,6 +36,7 @@ export const useProductStore = create((set) => ({
 	},
 
 	fetchProductsByCategory: async (category) => {
+
 		set({ loading: true });
 		try {
 			const response = await axios.get(`/products/category/${category}`);
@@ -56,7 +59,7 @@ export const useProductStore = create((set) => ({
 			console.log("Error deleting product:", error);
 			set({ loading: false });
 			toast.error(error.response.data.error || "Failed to delete product");
-			
+
 		}
 	},
 

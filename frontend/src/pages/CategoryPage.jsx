@@ -1,16 +1,27 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useProductStore } from "../stores/useProductStore";
 import { useParams } from "react-router-dom";
 import { motion } from "framer-motion";
 import ProductCard from "../components/ProductCard";
-
+import { useTranslation } from "react-i18next";
 
 
 const CategoryPage = () => {
+    const { t } = useTranslation();
     const { fetchProductsByCategory, products, loading } = useProductStore()
     const { category } = useParams()  // get the category from the URL params using the useParams hook from react-router-dom to fetch products by category from the backend API
+    const [categoryName, setCategoryName] = useState("");
 
     useEffect(() => {
+        const categoryMapping = {
+            twoYesrs: "category.Newborn to 2 years old",
+            animeFigure: "category.Anime Figures",
+            boysWorld: "category.Boys world",
+            girlsWorld: "category.Girls world",
+            educationalGames: "category.Educational games",
+            scooter: "category.Scooters",
+        };
+        setCategoryName(categoryMapping[category] || "");
         fetchProductsByCategory(category)
     }, [fetchProductsByCategory, category])
 
@@ -23,7 +34,7 @@ const CategoryPage = () => {
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.8 }}
                 >
-                    {category.charAt(0).toUpperCase() + category.slice(1)}
+                    {t(categoryName)} {/* Translate the category name */}
                 </motion.h1>
 
                 <motion.div
@@ -34,7 +45,7 @@ const CategoryPage = () => {
                 >
                     {products?.length === 0 && (
                         <h2 className='text-3xl font-semibold text-gray-300 text-center col-span-full'>
-                            No products found
+                            {t("No products found")}
                         </h2>
                     )}
 

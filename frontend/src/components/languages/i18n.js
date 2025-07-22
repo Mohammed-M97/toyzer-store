@@ -12,7 +12,7 @@ i18n
       loadPath: 'http://localhost:5000/locales/{{lng}}.json', // URL to load the language files
     },
     fallbackLng: 'en',
-    debug: true,
+    debug: false,
     detection: {
       order: ['queryString', 'cookie', 'localStorage', 'sessionStorage', 'navigator', 'htmlTag'],
       caches: ['cookie'],

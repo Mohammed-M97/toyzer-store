@@ -3,7 +3,19 @@ import { motion } from "framer-motion";
 import { PlusCircle, Upload, Loader } from "lucide-react";
 import { useProductStore } from "../stores/useProductStore";
 
-const categories = ["jeans", "t-shirts", "shoes", "glasses", "jackets", "suits", "bags"];
+/* const categories = ["twoYesrs", "Anime Figures", "Boys world", "Girls world", "Educational games", "Scooters", "bags"]; */
+
+const categoryMapping = {
+  twoYesrs: "Newborn to 2 years old",
+  "Anime Figures": "Anime Figures",
+  boysWorld: "Boys world",
+  girlsWorld: "Girls world",
+  educationalGames: "Educational games",
+  scooter: "Scooters",
+};
+
+const categories = Object.keys(categoryMapping); // Use the keys from categoryMapping
+
 
 const CreateProductForm = () => {
   const [newProduct, setNewProduct] = useState({
@@ -118,7 +130,7 @@ const CreateProductForm = () => {
             <option value=''>Select a category</option>
             {categories.map((category) => (
               <option key={category} value={category}>
-                {category}
+                {categoryMapping[category]}
               </option>
             ))}
           </select>

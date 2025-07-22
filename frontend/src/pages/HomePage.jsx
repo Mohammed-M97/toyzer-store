@@ -8,23 +8,27 @@ import "slick-carousel/slick/slick-theme.css";
 import { useTranslation } from "react-i18next";
 
 const categories = [
-    { href: "/twoYesrs", name: "Newborn to 2 years old", imageUrl: "/twoYears.jpg" },
-    { href: "/animeFigure", name: "Anime Figure", imageUrl: "/animeFigure.jpg" },
-    { href: "/boysWorld", name: "Boys world", imageUrl: "/boysWorld.jpg" },
-    { href: "/girlsWorld", name: "Girls world", imageUrl: "/girlsWorld.jpg" },
-    { href: "/educationalGames", name: "Educational games", imageUrl: "/educationalGames.jpg" },
-    { href: "/scooter", name: "Scooter", imageUrl: "/scooter.png" },
-    { href: "/t-shirts", name: "T-shirts", imageUrl: "/tshirts.jpg" },
+
+    // New categories
+    { href: "/twoYesrs", name: "category.Newborn to 2 years old", imageUrl: "/twoYears.jpg" }, // Updated
+  { href: "/animeFigure", name: "category.Anime Figures", imageUrl: "/animeFigure.jpg" }, // Updated
+  { href: "/boysWorld", name: "category.Boys world", imageUrl: "/boysWorld.jpg" }, // Updated
+  { href: "/girlsWorld", name: "Girls world", imageUrl: "/girlsWorld.jpg" }, // Updated
+  { href: "/educationalGames", name: "category.Educational games", imageUrl: "/educationalGames.jpg" }, // Updated
+  { href: "/scooter", name: "category.Scooters", imageUrl: "/scooter.png" }, // Updated
+    
+    // old categories
+    /* { href: "/t-shirts", name: "T-shirts", imageUrl: "/tshirts.jpg" },
     { href: "/shoes", name: "Shoes", imageUrl: "/shoes.jpg" },
     { href: "/glasses", name: "Glasses", imageUrl: "/glasses.png" },
     { href: "/jackets", name: "Jackets", imageUrl: "/jackets.jpg" },
     { href: "/suits", name: "Suits", imageUrl: "/suits.jpg" },
-    { href: "/bags", name: "Bags", imageUrl: "/bags.jpg" },
+    { href: "/bags", name: "Bags", imageUrl: "/bags.jpg" }, */
 ];
 
 const HomePage = () => {
     const { t } = useTranslation();
-    const { fetchFeaturedProducts, products, isLoading } = useProductStore();
+    const { fetchFeaturedProducts, products, loading } = useProductStore();
 
     useEffect(() => {
         fetchFeaturedProducts();
@@ -74,7 +78,7 @@ const HomePage = () => {
                     ))}
                 </div>
 
-                {!isLoading && products.length > 0 && <FeaturedProducts featuredProducts={products} />}
+                {!loading && products.length > 0 && <FeaturedProducts featuredProducts={products} />}
             </div>
         </div>
     );

@@ -83,6 +83,8 @@ export const deleteProduct = async (req, res) => {
 		}
 
 		await Product.findByIdAndDelete(req.params.id);
+		// Clear the Redis cache after deleting the product
+		await redis.del("featured_products");
 
 		res.json({ message: "Product deleted successfully" });
 	} catch (error) {

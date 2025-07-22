@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { ShoppingCart, UserPlus, LogIn, LogOut, Lock } from "lucide-react";
 import { Link } from "react-router-dom";
 import { useUserStore } from '../stores/useUserStore';
@@ -8,9 +8,8 @@ import i18n from './languages/i18n';
 
 const Navbar = () => {
     const { t } = useTranslation();
-    const { user, logout } = useUserStore();
+    const { user, logout, checkingAuth } = useUserStore();
     const { cart } = useCartStore();
-    const isAdmin = user?.role === 'admin';
     const [currentLanguage, setCurrentLanguage] = useState('en');
 
     const changeLanguage = (lng) => {
@@ -41,7 +40,7 @@ const Navbar = () => {
                             </Link>
                         )}
 
-                        {isAdmin && (
+                        {!checkingAuth && user?.role === 'admin' && (
                             <Link
                                 className='bg-lavender-700 hover:bg-lavender-600 text-white hover:text-gray-700 px-3 py-1 rounded-md font-medium transition duration-300 ease-in-out flex items-center'
                                 to={"/secret-dashboard"}
