@@ -23,6 +23,7 @@ const CategoryPage = () => {
         };
         setCategoryName(categoryMapping[category] || "");
         fetchProductsByCategory(category)
+        window.scrollTo(0, 0); // Scroll to top on component mount
     }, [fetchProductsByCategory, category])
 
     return (

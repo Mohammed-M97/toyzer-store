@@ -13,17 +13,9 @@ const categories = [
     { href: "/twoYesrs", name: "category.Newborn to 2 years old", imageUrl: "/twoYears.jpg" }, // Updated
   { href: "/animeFigure", name: "category.Anime Figures", imageUrl: "/animeFigure.jpg" }, // Updated
   { href: "/boysWorld", name: "category.Boys world", imageUrl: "/boysWorld.jpg" }, // Updated
-  { href: "/girlsWorld", name: "Girls world", imageUrl: "/girlsWorld.jpg" }, // Updated
+  { href: "/girlsWorld", name: "category.Girls world", imageUrl: "/girlsWorld.jpg" }, // Updated
   { href: "/educationalGames", name: "category.Educational games", imageUrl: "/educationalGames.jpg" }, // Updated
   { href: "/scooter", name: "category.Scooters", imageUrl: "/scooter.png" }, // Updated
-    
-    // old categories
-    /* { href: "/t-shirts", name: "T-shirts", imageUrl: "/tshirts.jpg" },
-    { href: "/shoes", name: "Shoes", imageUrl: "/shoes.jpg" },
-    { href: "/glasses", name: "Glasses", imageUrl: "/glasses.png" },
-    { href: "/jackets", name: "Jackets", imageUrl: "/jackets.jpg" },
-    { href: "/suits", name: "Suits", imageUrl: "/suits.jpg" },
-    { href: "/bags", name: "Bags", imageUrl: "/bags.jpg" }, */
 ];
 
 const HomePage = () => {
