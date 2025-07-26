@@ -13,7 +13,6 @@ import { useEffect } from 'react';
 import LoadingSpinner from './components/LoadingSpinner';
 import { useCartStore } from './stores/useCartStore';
 
-
 function App() {
   const { user, checkAuth, checkingAuth } = useUserStore();
   const { getCartItems } = useCartStore();
@@ -29,14 +28,13 @@ function App() {
   if (checkingAuth) return <LoadingSpinner />;
 
   return (
-    <div className='min-h-screen bg-gray-100 text-gray-900 flex flex-col'>
-      {/* Background gradient */}
-      <div className='absolute inset-0 overflow-hidden'>
-        <div className='absolute inset-0 h-full'>
-          <div className='absolute top-0 left-1/2 -translate-x-1/2 w-full h-full bg-[radial-gradient(ellipse_at_top,rgba(255,255,255,1)_0%,rgba(229,229,229,1)_45%,rgba(200,200,200,1)_100%)]' />
-        </div>
-      </div>
-
+    <div className='min-h-screen bg-gray-100 text-gray-900 flex flex-col'
+      style={{
+        background: 'radial-gradient(ellipse at top, rgba(255,255,255,1) 0%, rgba(229,229,229,1) 45%, rgba(200,200,200,1) 100%)',
+        backgroundSize: 'cover',
+        backgroundAttachment: 'fixed',
+      }}
+    >
       <div className="relative z-50 flex-grow pt-20">
         <Navbar />
         <Routes>
