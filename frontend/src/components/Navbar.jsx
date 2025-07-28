@@ -42,10 +42,10 @@ const Navbar = () => {
 
                         {!checkingAuth && user?.role === 'admin' && (
                             <Link
-                                className='bg-lavender-700 hover:bg-lavender-600 text-white hover:text-gray-700 px-3 py-1 rounded-md font-medium transition duration-300 ease-in-out flex items-center'
+                                className='bg-lavender-700 hover:bg-lavender-600 text-white hover:text-gray-700 py-2 px-4 rounded-md flex items-center transition duration-300 ease-in-out'
                                 to={"/secret-dashboard"}
                             >
-                                <Lock className='inline-block mr-1' size={18} />
+                                <Lock className='mr-2 ml-1' size={18} />
                                 <span className='hidden sm:inline'>{t("Dashboard")}</span>
                             </Link>
                         )}
