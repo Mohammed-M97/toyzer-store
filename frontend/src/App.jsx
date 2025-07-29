@@ -28,13 +28,7 @@ function App() {
   if (checkingAuth) return <LoadingSpinner />;
 
   return (
-    <div className='min-h-screen bg-gray-100 text-gray-900 flex flex-col'
-      style={{
-        background: 'radial-gradient(ellipse at top, rgba(255,255,255,1) 0%, rgba(229,229,229,1) 45%, rgba(200,200,200,1) 100%)',
-        backgroundSize: 'cover',
-        backgroundAttachment: 'fixed',
-      }}
-    >
+    <div className='min-h-screen bg-gray-100 text-gray-900 flex flex-col bg-[radial-gradient(ellipse_at_top,rgba(255,255,255,1)_0%,rgba(229,229,229,1)_45%,rgba(200,200,200,1)_100%)] bg-cover bg-fixed'>
       <div className="relative z-50 flex-grow pt-20">
         <Navbar />
         <Routes>
