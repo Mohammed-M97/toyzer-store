@@ -14,12 +14,12 @@ const CategoryPage = () => {
 
     useEffect(() => {
         const categoryMapping = {
-            twoYesrs: "category.Newborn to 2 years old",
-            animeFigure: "category.Anime Figures",
+            twoYears: "category.Newborn to 2 years old",
+            animeFigures: "category.Anime Figures",
             boysWorld: "category.Boys world",
             girlsWorld: "category.Girls world",
             educationalGames: "category.Educational games",
-            scooter: "category.Scooters",
+            scooters: "category.Scooters",
         };
         setCategoryName(categoryMapping[category] || "");
         fetchProductsByCategory(category)

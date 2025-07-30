@@ -6,12 +6,12 @@ import { useProductStore } from "../stores/useProductStore";
 /* const categories = ["twoYesrs", "Anime Figures", "Boys world", "Girls world", "Educational games", "Scooters", "bags"]; */
 
 const categoryMapping = {
-  twoYesrs: "Newborn to 2 years old",
-  "Anime Figures": "Anime Figures",
+  twoYears: "Newborn to 2 years old",
+  animeFigures: "Anime Figures",
   boysWorld: "Boys world",
   girlsWorld: "Girls world",
   educationalGames: "Educational games",
-  scooter: "Scooters",
+  scooters: "Scooters",
 };
 
 const categories = Object.keys(categoryMapping); // Use the keys from categoryMapping

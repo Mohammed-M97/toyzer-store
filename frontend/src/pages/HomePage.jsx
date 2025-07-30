@@ -10,8 +10,8 @@ import { useTranslation } from "react-i18next";
 const categories = [
 
     // New categories
-    { href: "/twoYesrs", name: "category.Newborn to 2 years old", imageUrl: "/twoYears.jpg" }, // Updated
-  { href: "/animeFigure", name: "category.Anime Figures", imageUrl: "/animeFigure.jpg" }, // Updated
+    { href: "/twoYears", name: "category.Newborn to 2 years old", imageUrl: "/twoYears.jpg" }, // Updated
+  { href: "/animeFigures", name: "category.Anime Figures", imageUrl: "/animeFigure.jpg" }, // Updated
   { href: "/boysWorld", name: "category.Boys world", imageUrl: "/boysWorld.jpg" }, // Updated
   { href: "/girlsWorld", name: "category.Girls world", imageUrl: "/girlsWorld.jpg" }, // Updated
   { href: "/educationalGames", name: "category.Educational games", imageUrl: "/educationalGames.jpg" }, // Updated
