@@ -15,7 +15,7 @@ const categories = [
   { href: "/boysWorld", name: "category.Boys world", imageUrl: "/boysWorld.jpg" }, // Updated
   { href: "/girlsWorld", name: "category.Girls world", imageUrl: "/girlsWorld.jpg" }, // Updated
   { href: "/educationalGames", name: "category.Educational games", imageUrl: "/educationalGames.jpg" }, // Updated
-  { href: "/scooter", name: "category.Scooters", imageUrl: "/scooter.png" }, // Updated
+  { href: "/scooters", name: "category.Scooters", imageUrl: "/scooter.png" }, // Updated
 ];
 
 const HomePage = () => {
