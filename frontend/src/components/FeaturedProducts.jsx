@@ -49,7 +49,7 @@ const FeaturedProducts = ({ featuredProducts }) => {
                             {featuredProducts?.map((product) => (
                                 <div key={product._id} className='w-full sm:w-1/2 lg:w-1/3 xl:w-1/4 flex-shrink-0 px-2'>
                                     <div className='bg-white bg-opacity-90 backdrop-blur-sm rounded-lg shadow-lg overflow-hidden h-full transition-all duration-300 hover:shadow-xl border border-gray-300'>
-                                        <div className='overflow-hidden'>
+                                        <div className='overflow-hidden p-2'> {/* Added padding to the image container */}
                                             <img
                                                 src={product.image}
                                                 alt={product.name}
