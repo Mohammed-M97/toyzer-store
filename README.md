@@ -12,16 +12,6 @@ Toyzer Store is an e-commerce website specializing in toys and related products.
 
 [//]: # (2nd Home Page Screenshot)
 ![2nd Home Page Screenshot](docs/images/websitePage2.png)
-
-[//]: # (Phone mode Screenshot)
-![2nd Home Page Screenshot](docs/images/websitePage3.png)
-
-[//]: # (2nd phone mode Screenshot)
-![2nd Home Page Screenshot](docs/images/websitePage4.png)
-
-[//]: # (3rd Home Page Screenshot)
-![2nd Home Page Screenshot](docs/images/websitePage6.png)
-
 ## Live Demo
 
 🚀 **[View Live Demo](https://toyzer-store.onrender.com/)**
