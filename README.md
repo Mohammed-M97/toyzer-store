@@ -1,17 +1,21 @@
 # Toyzer Store
 
 [//]: # (Logo)
-![Toyzer Store Logo](public/images/logo.png)
+![Toyzer Store Logo](docs/images/logo.png)
 
 ## Description
 
 Toyzer Store is an e-commerce website specializing in toys and related products. It provides a platform for users to browse, purchase, and manage their favorite toys. The website is built using React for the frontend and Node.js with Express for the backend, with a MongoDB database.
 
 [//]: # (Home Page Screenshot)
-![Home Page Screenshot](path/to/your/homepage_screenshot.png)
+![Home Page Screenshot](docs/images/websitePage1.png)
 
-[//]: # (Product Detail Page Screenshot)
-![Product Detail Page Screenshot](path/to/your/product_detail_screenshot.png)
+[//]: # (2nd Home Page Screenshot)
+![2nd Home Page Screenshot](docs/images/websitePage2.png)
+
+## Live Demo
+
+🚀 **[View Live Demo](https://toyzer-store.onrender.com/)**
 
 ## Features
 
@@ -19,7 +23,7 @@ Toyzer Store is an e-commerce website specializing in toys and related products.
 *   **User Authentication:** Secure user registration and login.
 *   **Shopping Cart:** Add and manage items in a shopping cart.
 *   **Checkout Process:** Secure and streamlined checkout process.
-*   **Admin Dashboard:** (If applicable) Manage products, users, and orders.
+*   **Admin Dashboard:** Manage products, users, and orders.
 *   **Localization:** Supports multiple languages (English and Arabic).
 
 ## Technologies Used
@@ -51,7 +55,7 @@ Toyzer Store is an e-commerce website specializing in toys and related products.
 1.  **Clone the repository:**
 
     ```bash
-    git clone <https://github.com/Mohammed-M97/toyzer-store>
+    git clone https://github.com/Mohammed-M97/toyzer-store.git
     ```
 
 2.  **Navigate to the project directory:**
@@ -111,11 +115,11 @@ Toyzer Store is an e-commerce website specializing in toys and related products.
 ## Usage
 
 *   **Frontend:** Open your browser and navigate to `http://localhost:3000` (or the port specified in your frontend configuration).
-*   **Backend:** The backend server will be running on `http://localhost:5000` (or the port specified in your [.env](http://_vscodecontentref_/0) file).
+*   **Backend:** The backend server will be running on `http://localhost:5000` (or the port specified in your .env file).
 
 ## Deployment
 
-The project is deployed on Render.
+The project is deployed on Render: **[https://toyzer-store.onrender.com/](https://toyzer-store.onrender.com/)**
 
 ## Contributing
 
@@ -133,4 +137,4 @@ This project is licensed under the MIT License.
 
 ## Contact
 
-Mohammed Alawlaqi - [mohammed-alawlaqi@outlook.com]
+Mohammed Alawlaqi - [mohammed-alawlaqi@outlook.com](mailto:mohammed-alawlaqi@outlook.com)
