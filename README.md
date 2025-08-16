@@ -1,7 +1,7 @@
 # Toyzer Store
 
 [//]: # (Logo)
-![Toyzer Store Logo](/logo.png)
+![Toyzer Store Logo](public/images/logo.png)
 
 ## Description
 
