@@ -1,59 +1,91 @@
-import Redis from "ioredis"
+import Redis from "ioredis";
 import dotenv from "dotenv";
 
 dotenv.config();
 
-// Create Redis connection with error handling
-let redis;
+// Redis is a cache and a refresh-token allow-list, not a hard dependency.
+// If it is unreachable the app must keep serving requests, so every failure
+// mode below degrades instead of throwing.
 
-try {
-  redis = new Redis(process.env.UPSTASH_REDIS_URL, {
-    maxRetriesPerRequest: 3,
-    retryDelayOnFailover: 100,
-    enableReadyCheck: false,
-    maxLoadingTimeout: 1000,
-  });
+let redis = null;
+let ready = false;
+let loggedError = false;
 
-  // Test connection
-  await redis.ping();
-  console.log('✅ Redis connected successfully');
-} catch (error) {
-  console.warn('⚠️ Redis connection failed, running without cache:', error.message);
-  redis = null;
+const url = process.env.UPSTASH_REDIS_URL;
+
+if (!url) {
+	console.warn("⚠️  UPSTASH_REDIS_URL is not set — running without cache.");
+} else {
+	redis = new Redis(url, {
+		lazyConnect: true, // don't connect at import time, so a bad URL can't break startup
+		enableOfflineQueue: false, // fail fast while disconnected instead of buffering forever
+		maxRetriesPerRequest: 2,
+		connectTimeout: 10_000,
+		retryStrategy: (attempt) => Math.min(attempt * 500, 5_000),
+	});
+
+	// ioredis reports connection failures through the 'error' event. Without a
+	// listener Node treats it as an unhandled 'error' and kills the process —
+	// that is what turned a Redis blip into a restart loop on Render.
+	redis.on("error", (error) => {
+		ready = false;
+		if (!loggedError) {
+			console.warn("⚠️  Redis unavailable, running without cache:", error.message);
+			loggedError = true; // reconnect attempts fire this constantly; log once per outage
+		}
+	});
+
+	redis.on("ready", () => {
+		ready = true;
+		loggedError = false;
+		console.log("✅ Redis connected");
+	});
+
+	redis.on("end", () => {
+		ready = false;
+	});
+
+	redis.connect().catch((error) => {
+		console.warn("⚠️  Initial Redis connection failed:", error.message);
+	});
 }
 
-// Helper functions for safe Redis operations
+export const isRedisAvailable = () => Boolean(redis) && ready;
+
 export const safeRedisGet = async (key) => {
-  if (!redis) return null;
-  try {
-    return await redis.get(key);
-  } catch (error) {
-    console.warn('Redis GET error:', error.message);
-    return null;
-  }
+	if (!isRedisAvailable()) return null;
+	try {
+		return await redis.get(key);
+	} catch (error) {
+		console.warn("Redis GET failed:", error.message);
+		return null;
+	}
 };
 
-export const safeRedisSet = async (key, value, expiration = 3600) => {
-  if (!redis) return false;
-  try {
-    await redis.set(key, value, 'EX', expiration);
-    return true;
-  } catch (error) {
-    console.warn('Redis SET error:', error.message);
-    return false;
-  }
+export const safeRedisSet = async (key, value, expirationSeconds = 3600) => {
+	if (!isRedisAvailable()) return false;
+	try {
+		if (expirationSeconds) {
+			await redis.set(key, value, "EX", expirationSeconds);
+		} else {
+			await redis.set(key, value);
+		}
+		return true;
+	} catch (error) {
+		console.warn("Redis SET failed:", error.message);
+		return false;
+	}
 };
 
 export const safeRedisDel = async (key) => {
-  if (!redis) return false;
-  try {
-    await redis.del(key);
-    return true;
-  } catch (error) {
-    console.warn('Redis DEL error:', error.message);
-    return false;
-  }
+	if (!isRedisAvailable()) return false;
+	try {
+		await redis.del(key);
+		return true;
+	} catch (error) {
+		console.warn("Redis DEL failed:", error.message);
+		return false;
+	}
 };
 
 export { redis };
-

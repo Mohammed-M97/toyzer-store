@@ -3,10 +3,15 @@
   "version": "1.0.0",
   "description": "e-commerce website",
   "main": "server.js",
+  "engines": {
+    "node": ">=20.0.0"
+  },
   "scripts": {
     "dev": "nodemon backend/server.js",
     "start": "node backend/server.js",
-    "build": "npm install && npm install --prefix frontend && npm run build --prefix frontend"
+    "build": "npm install && npm install --prefix frontend && npm run build --prefix frontend",
+    "seed": "node backend/seed.js",
+    "test": "node tests/auth-refresh.test.mjs && node tests/boot.test.mjs"
   },
   "author": "Mohammed Alawlaqi",
   "license": "ISC",

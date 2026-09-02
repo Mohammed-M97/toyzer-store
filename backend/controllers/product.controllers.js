@@ -1,6 +1,9 @@
-import { redis } from "../lib/redis.js";
+import { safeRedisGet, safeRedisSet, safeRedisDel } from "../lib/redis.js";
 import cloudinary from "../lib/cloudinary.js";
 import Product from "../models/product.model.js";
+
+const FEATURED_CACHE_KEY = "featured_products";
+const FEATURED_CACHE_TTL_SECONDS = 60 * 60; // 1 hour
 
 export const getAllProducts = async (req, res) => {
 	try {
@@ -14,7 +17,7 @@ export const getAllProducts = async (req, res) => {
 
 export const getFeaturedProducts = async (req, res) => {
 	try {
-		let featuredProducts = await redis.get("featured_products");
+		let featuredProducts = await safeRedisGet(FEATURED_CACHE_KEY);
 		if (featuredProducts) {
 			return res.json(JSON.parse(featuredProducts));
 		}
@@ -30,7 +33,7 @@ export const getFeaturedProducts = async (req, res) => {
 
 		// store in redis for future quick access
 
-		await redis.set("featured_products", JSON.stringify(featuredProducts));
+		await safeRedisSet(FEATURED_CACHE_KEY, JSON.stringify(featuredProducts), FEATURED_CACHE_TTL_SECONDS);
 
 		res.json(featuredProducts);
 	} catch (error) {
@@ -84,7 +87,7 @@ export const deleteProduct = async (req, res) => {
 
 		await Product.findByIdAndDelete(req.params.id);
 		// Clear the Redis cache after deleting the product
-		await redis.del("featured_products");
+		await safeRedisDel(FEATURED_CACHE_KEY);
 
 		res.json({ message: "Product deleted successfully" });
 	} catch (error) {
@@ -150,7 +153,7 @@ async function updateFeaturedProductsCache() {
 		// The lean() method  is used to return plain JavaScript objects instead of full Mongoose documents. This can significantly improve performance
 
 		const featuredProducts = await Product.find({ isFeatured: true }).lean();
-		await redis.set("featured_products", JSON.stringify(featuredProducts));
+		await safeRedisSet(FEATURED_CACHE_KEY, JSON.stringify(featuredProducts), FEATURED_CACHE_TTL_SECONDS);
 	} catch (error) {
 		console.log("error in update cache function");
 	}
